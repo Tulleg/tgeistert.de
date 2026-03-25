@@ -1,0 +1,17 @@
+{
+  "name": "Mein Astro Projekt",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",         // Die offizielle Astro Extension
+        "esbenp.prettier-vscode",           // Formattierung
+        "dbaeumer.vscode-eslint",           // Fehlererkennung
+        "bradlc.vscode-tailwindcss",         // Falls du Tailwind nutzt
+        "davidanson.vscode-markdownlint"    // Markdown
+      ]
+    }
+  },
+  "forwardPorts": [4321],
+  "postCreateCommand": "npm install"
+}
