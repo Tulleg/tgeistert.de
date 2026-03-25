@@ -3,7 +3,7 @@ title: Vibe Coding im devcontainer Part 1
 author: Tobias Geistert
 pubDatetime: 2026-03-24T15:20:35Z
 slug: vibe-coding-devcontainer-part-1
-featured: false
+featured: true
 draft: false
 tags:
   - docker

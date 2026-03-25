@@ -1,8 +1,8 @@
 ---
-title: Vibe Coding im devcontainer Part 1
+title: Vibe Coding im devcontainer Part 3
 author: Tobias Geistert
 pubDatetime: 2026-03-25T15:20:35Z
-slug: vibe-coding-devcontainer-part-1
+slug: vibe-coding-devcontainer-part-3
 featured: false
 draft: true
 tags:
