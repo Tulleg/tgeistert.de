@@ -3,7 +3,7 @@ services:
     image: node:lts
     ports:
       - 4321:4321
-    working_dir: /app
+    working_dir: /workspaces/tgeistert.de
     command: npm run dev -- --host 0.0.0.0
     volumes:
-      - ./:/app
+      - ./:/workspaces/tgeistert.de
