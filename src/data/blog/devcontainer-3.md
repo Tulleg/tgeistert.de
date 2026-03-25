@@ -1,5 +1,5 @@
 ---
-title: Vibe Coding im devcontainer Part 3
+title: Vibe Coding im Devcontainer Part 3
 author: Tobias Geistert
 pubDatetime: 2026-03-25T15:20:35Z
 slug: vibe-coding-devcontainer-part-3
@@ -12,12 +12,11 @@ tags:
   - developing
   - vibecoding
 description: Kurze Beschreibung des Posts
-
 ---
 
 ## Teil 3 — Zsh, Neovim, LazyVim & Claude Code — die fertige Umgebung
 
-*Wir bauen jetzt die vollständige Konfiguration. Am Ende: ein `.devcontainer`-Ordner, den du in jedes Projekt kopieren kannst.*
+_Wir bauen jetzt die vollständige Konfiguration. Am Ende: ein `.devcontainer`-Ordner, den du in jedes Projekt kopieren kannst._
 
 **Tags:** Zsh · Neovim · LazyVim · Claude Code · Setup-Skript
 
@@ -164,18 +163,18 @@ alias ws="cd /workspaces"
   // Eigenes Dockerfile statt eines fertigen Images
   "build": {
     "dockerfile": "Dockerfile",
-    "context": "."
+    "context": ".",
   },
 
   // Konfigurationen persistent halten (ueberleben Rebuilds)
   "mounts": [
     "source=claude-config-${devcontainerId},target=/home/node/.claude,type=volume",
-    "source=nvim-data-${devcontainerId},target=/home/node/.local/share/nvim,type=volume"
+    "source=nvim-data-${devcontainerId},target=/home/node/.local/share/nvim,type=volume",
   ],
 
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
-    "EDITOR": "nvim"
+    "EDITOR": "nvim",
   },
 
   // Als non-root User arbeiten (Sicherheit)
@@ -184,7 +183,7 @@ alias ws="cd /workspaces"
   // Setup einmalig nach Container-Erstellung ausfuehren
   "postCreateCommand": "bash .devcontainer/setup.sh",
 
-  "forwardPorts": [3000, 5432]
+  "forwardPorts": [3000, 5432],
 }
 ```
 
@@ -227,23 +226,23 @@ Die Devcontainer-Spec unterstützt `.env`-Dateien direkt:
   "name": "Dev-Umgebung",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": "."
+    "context": ".",
   },
 
   // .env aus dem Projektordner einlesen (liegt eine Ebene höher als .devcontainer/)
   "runArgs": ["--env-file", "${localWorkspaceFolder}/.env"],
 
   "mounts": [
-    "source=nvim-data-${devcontainerId},target=/home/node/.local/share/nvim,type=volume"
+    "source=nvim-data-${devcontainerId},target=/home/node/.local/share/nvim,type=volume",
   ],
 
   "containerEnv": {
-    "EDITOR": "nvim"
+    "EDITOR": "nvim",
   },
 
   "remoteUser": "node",
   "postCreateCommand": "bash .devcontainer/setup.sh",
-  "forwardPorts": [3000, 5432]
+  "forwardPorts": [3000, 5432],
 }
 ```
 
@@ -319,7 +318,7 @@ Wenn du dieselbe Umgebung in mehreren Projekten nutzen möchtest, gibt es zwei A
 **Ansatz 1 — .devcontainer kopieren**  
 Den kompletten `.devcontainer`-Ordner in jedes Projekt kopieren. Einfach, aber Änderungen musst du überall machen.
 
-**Ansatz 2 — Dotfiles-Repository** *(empfohlen)*  
+**Ansatz 2 — Dotfiles-Repository** _(empfohlen)_  
 Zsh-Konfiguration, LazyVim-Config und Setup-Skripte in einem eigenen Git-Repo verwalten. Der Container klont es beim Start. Änderungen einmal machen, überall aktuell.
 
 Erstelle ein Repository (z.B. `github.com/dein-name/dotfiles`) und passe `setup.sh` an:

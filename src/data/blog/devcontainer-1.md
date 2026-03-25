@@ -1,5 +1,5 @@
 ---
-title: Vibe Coding im devcontainer Part 1
+title: Vibe Coding im Devcontainer Part 1
 author: Tobias Geistert
 pubDatetime: 2026-03-24T15:20:35Z
 slug: vibe-coding-devcontainer-part-1
@@ -12,12 +12,11 @@ tags:
   - developing
   - vibecoding
 description: Kurze Beschreibung des Posts
-
 ---
 
 ## Teil 1 — Was ist ein Devcontainer und warum willst du einen?
 
-*Das Konzept verstehen, bevor wir irgendetwas installieren. Keine Angst vor Docker-Grundlagen.*
+_Das Konzept verstehen, bevor wir irgendetwas installieren. Keine Angst vor Docker-Grundlagen._
 
 **Tags:** Konzepte · Docker · Grundlagen
 
@@ -27,7 +26,7 @@ Stell dir vor: Du hast Node.js in Version 18 auf deinem Rechner. Ein Projekt bra
 
 Devcontainer lösen das grundlegend anders: **Die gesamte Entwicklungsumgebung lebt im Container.** Dein Hostsystem bleibt sauber. Kein Node.js, kein npm, keine Claude-Installation auf dem Host nötig. Alles läuft isoliert.
 
-> **Wichtiger Punkt:** Ein Devcontainer ist *kein* Produktions-Container. Es ist eine vollständige Entwicklungsumgebung — mit Editor, Shell, Linter, Debugger und allem, was du brauchst — verpackt in ein reproduzierbares Rezept.
+> **Wichtiger Punkt:** Ein Devcontainer ist _kein_ Produktions-Container. Es ist eine vollständige Entwicklungsumgebung — mit Editor, Shell, Linter, Debugger und allem, was du brauchst — verpackt in ein reproduzierbares Rezept.
 
 ### Wie das Konzept funktioniert
 
@@ -44,15 +43,15 @@ mein-projekt/
   ...
 ```
 
-Dein Code liegt weiterhin auf deinem Host-Rechner (unter `~/projekte/mein-projekt`). Der Container sieht ihn über einen sogenannten *Bind Mount* — eine Brücke zwischen Host und Container. Änderungen in Neovim oder einem Terminal im Container sind sofort auf dem Host sichtbar.
+Dein Code liegt weiterhin auf deinem Host-Rechner (unter `~/projekte/mein-projekt`). Der Container sieht ihn über einen sogenannten _Bind Mount_ — eine Brücke zwischen Host und Container. Änderungen in Neovim oder einem Terminal im Container sind sofort auf dem Host sichtbar.
 
 ### Devcontainer vs. einfach Docker
 
-| | Normaler Docker-Container | Devcontainer (die Spec) | VS Code Remote |
-|---|---|---|---|
-| **Aufwand** | Alles manuell: Ports, Volumes, Netzwerk, User-IDs | JSON-Konfiguration — die Spec kümmert sich um den Rest | Eingebaut in VS Code |
-| **Für wen** | Produktions-Deployments | Entwicklungsumgebungen | VS-Code-Nutzer |
-| **CLI nötig** | `docker` | `@devcontainers/cli` | VS Code Extension |
+|               | Normaler Docker-Container                         | Devcontainer (die Spec)                                | VS Code Remote       |
+| ------------- | ------------------------------------------------- | ------------------------------------------------------ | -------------------- |
+| **Aufwand**   | Alles manuell: Ports, Volumes, Netzwerk, User-IDs | JSON-Konfiguration — die Spec kümmert sich um den Rest | Eingebaut in VS Code |
+| **Für wen**   | Produktions-Deployments                           | Entwicklungsumgebungen                                 | VS-Code-Nutzer       |
+| **CLI nötig** | `docker`                                          | `@devcontainers/cli`                                   | VS Code Extension    |
 
 ### Was steckt in einer devcontainer.json?
 
@@ -68,14 +67,14 @@ Schauen wir uns eine minimalistische Konfiguration an, um das Prinzip zu versteh
 
   // Features sind fertige Pakete, die ins Image installiert werden
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
   },
 
   // Wird einmalig nach dem Erstellen des Containers ausgefuehrt
   "postCreateCommand": "npm install",
 
   // Port-Weiterleitung: Container-Port 3000 -> Host-Port 3000
-  "forwardPorts": [3000]
+  "forwardPorts": [3000],
 }
 ```
 
@@ -83,7 +82,7 @@ Schauen wir uns eine minimalistische Konfiguration an, um das Prinzip zu versteh
 
 ### Features: der Baukasten-Ansatz
 
-Das Beste an der Devcontainer-Spec sind die sogenannten *Features*. Das sind fertige, getestete Pakete, die du einfach per JSON in dein Setup einbindest — ohne selbst apt-get-Befehle schreiben zu müssen.
+Das Beste an der Devcontainer-Spec sind die sogenannten _Features_. Das sind fertige, getestete Pakete, die du einfach per JSON in dein Setup einbindest — ohne selbst apt-get-Befehle schreiben zu müssen.
 
 ```jsonc
 "features": {

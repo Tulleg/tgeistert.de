@@ -1,5 +1,5 @@
 ---
-title: Vibe Coding im devcontainer Part 2
+title: Vibe Coding im Devcontainer Part 2
 author: Tobias Geistert
 pubDatetime: 2026-03-25T15:20:35Z
 slug: vibe-coding-devcontainer-part-2
@@ -12,12 +12,11 @@ tags:
   - developing
   - vibecoding
 description: Kurze Beschreibung des Posts
-
 ---
 
 ## Teil 2 — Devcontainer CLI installieren & erste Konfiguration
 
-*Von null zum ersten laufenden Container — Schritt für Schritt. Kein VS Code erforderlich.*
+_Von null zum ersten laufenden Container — Schritt für Schritt. Kein VS Code erforderlich._
 
 **Tags:** Installation · CLI · Konfiguration · Linux
 
@@ -57,7 +56,7 @@ npm install -g @devcontainers/cli
 devcontainer --version
 ```
 
-> **Nur die CLI braucht Node.js auf dem Host.** Das `@devcontainers/cli`-Paket ist in Node.js geschrieben und muss auf dem Host laufen, um Container zu starten. Die Node.js-Version *in deinem Container* ist komplett unabhängig davon.
+> **Nur die CLI braucht Node.js auf dem Host.** Das `@devcontainers/cli`-Paket ist in Node.js geschrieben und muss auf dem Host laufen, um Container zu starten. Die Node.js-Version _in deinem Container_ ist komplett unabhängig davon.
 
 ### Schritt für Schritt: Ein Template als Ausgangspunkt
 
@@ -99,12 +98,12 @@ Das Node.js-Template erzeugt in etwa diese Konfiguration:
   // VS Code-spezifisch — fuer uns irrelevant, aber nicht stoerend
   "customizations": {
     "vscode": {
-      "extensions": ["dbaeumer.vscode-eslint"]
-    }
+      "extensions": ["dbaeumer.vscode-eslint"],
+    },
   },
 
   "forwardPorts": [3000],
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
 }
 ```
 
@@ -140,7 +139,7 @@ Jetzt erweitern wir die Konfiguration. Öffne `.devcontainer/devcontainer.json` 
       "installZsh": true,
       "configureZshAsDefaultShell": true,
       "installOhMyZsh": true,
-      "upgradePackages": true
+      "upgradePackages": true,
     },
 
     // Claude Code (offizielles Anthropic-Feature)
@@ -148,22 +147,22 @@ Jetzt erweitern wir die Konfiguration. Öffne `.devcontainer/devcontainer.json` 
 
     // Neovim (aktuellere Version als apt)
     "ghcr.io/devcontainers-community/features/neovim:1": {
-      "version": "stable"
-    }
+      "version": "stable",
+    },
   },
 
   // Claude-Konfiguration in einem Volume persistieren
   // (damit du dich nicht bei jedem Rebuild neu einloggen musst)
   "mounts": [
-    "source=claude-config-${devcontainerId},target=/home/node/.claude,type=volume"
+    "source=claude-config-${devcontainerId},target=/home/node/.claude,type=volume",
   ],
 
   "containerEnv": {
-    "CLAUDE_CONFIG_DIR": "/home/node/.claude"
+    "CLAUDE_CONFIG_DIR": "/home/node/.claude",
   },
 
   "forwardPorts": [3000],
-  "postCreateCommand": "npm install"
+  "postCreateCommand": "npm install",
 }
 ```
 
@@ -218,4 +217,3 @@ docker rmi <image-id>
 - Features werden in `devcontainer.json` per URL eingebunden — keine apt-Befehle nötig
 - Claude-Code-Konfiguration in einem Docker Volume persistieren, damit der Login erhalten bleibt
 - `devcontainer up` → `devcontainer exec ... zsh` ist der tägliche Workflow
-
