@@ -8,7 +8,6 @@
         "esbenp.prettier-vscode",           // Formattierung
         "dbaeumer.vscode-eslint",           // Fehlererkennung
         "bradlc.vscode-tailwindcss",         // Falls du Tailwind nutzt
-        "davidanson.vscode-markdownlint",    // Markdown
         "github.vscode-github-actions"
       ]
     }
