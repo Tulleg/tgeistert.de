@@ -25,7 +25,19 @@ Neben meiner Arbeit mit Paledo und SAP entdecke ich gerade meine Leidenschaft f�
 
 **KeyUser Paledo** _(aktuell)_ Betreuung und Administration von Paledo als SAP-PM-Middleware. Ich koordiniere zwischen Anwendern und IT, pflege die Systemkonfiguration, erstelle Reports und Analysen und unterstütze bei der Digitalisierung von Instandhaltungsprozessen.
 
-<!-- Weitere Stationen hier ergänzen -->
+---
+
+**Mechatroniker** *(2008 – 2019)*
+**Daimler AG, Werk Marienfelde**
+ 
+Nach meiner Ausbildung blieb ich Daimler treu und arbeitete elf Jahre lang als Mechatroniker im Werk Marienfelde. In dieser Zeit sammelte ich tiefes praktisches Know-how in der Wartung, Instandhaltung und Fehlerdiagnose komplexer Produktionsanlagen.
+ 
+---
+ 
+**Ausbildung zum Mechatroniker** *(2005 – 2008)*
+**Daimler AG**
+ 
+Den Grundstein meiner technischen Laufbahn legte ich mit der Ausbildung zum Mechatroniker bei Daimler – einer Kombination aus Mechanik, Elektronik und Steuerungstechnik, die mich bis heute prägt.
 
 ---
 
