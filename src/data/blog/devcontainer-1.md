@@ -20,6 +20,8 @@ _Das Konzept verstehen, bevor wir irgendetwas installieren. Keine Angst vor Dock
 
 **Tags:** Konzepte · Docker · Grundlagen
 
+![Devontainer abstrakt](@/assets/images/containerAbstrcted.png)   
+
 ### Das Problem, das Devcontainer lösen
 
 Stell dir vor: Du hast Node.js in Version 18 auf deinem Rechner. Ein Projekt braucht Version 20, das andere Version 16. Du jonglierst mit `nvm`, `asdf`, oder einem Dutzend anderer Tools, damit nichts kollidiert. Und dann kommt Claude Code dazu — ein globales npm-Paket, das einfach überall drauf liegt.
