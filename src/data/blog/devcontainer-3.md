@@ -4,7 +4,7 @@ author: Tobias Geistert
 pubDatetime: 2026-03-25T15:20:35Z
 slug: vibe-coding-devcontainer-part-3
 featured: false
-draft: true
+draft: false
 tags:
   - docker
   - devcontainer
