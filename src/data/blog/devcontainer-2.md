@@ -20,6 +20,8 @@ _Von null zum ersten laufenden Container — Schritt für Schritt. Kein VS Code 
 
 **Tags:** Installation · CLI · Konfiguration · Linux
 
+![Devontainer abstrakt](@/assets/images/containerAbstr2.png)
+
 ### Voraussetzungen prüfen
 
 > **Host-Terminal:** Du brauchst ein modernes Terminal mit Nerd Font-Unterstützung (z.B. Kitty, Alacritty oder WezTerm), damit Icons in Neovim korrekt angezeigt werden. Die Konfiguration deines Host-Terminals ist nicht Teil dieser Serie.

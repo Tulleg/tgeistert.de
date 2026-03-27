@@ -20,6 +20,8 @@ _Wir bauen jetzt die vollständige Konfiguration. Am Ende: ein `.devcontainer`-O
 
 **Tags:** Zsh · Neovim · LazyVim · Claude Code · Setup-Skript
 
+![Devontainer abstrakt](@/assets/images/conatinerAbstrcted3.png)
+
 ### Die Strategie: Dockerfile statt nur Features
 
 Features sind praktisch, aber für komplexere Setups (LazyVim, Zsh-Plugins, eigene Konfigurationen) ist ein eigenes `Dockerfile` flexibler. Wir kombinieren beides: Ein Basis-Image + ein Setup-Skript für alles weitere.
