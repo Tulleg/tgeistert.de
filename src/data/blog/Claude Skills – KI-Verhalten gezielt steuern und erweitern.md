@@ -4,7 +4,7 @@ author: Tobias Geistert
 pubDatetime: 2026-03-25T15:20:35Z
 slug: claude-skills-erklaert featured
 featured: false
-draft: true
+draft: false
 tags:
   - ki
   - Claude
