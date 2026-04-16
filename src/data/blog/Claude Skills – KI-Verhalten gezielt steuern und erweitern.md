@@ -1,9 +1,9 @@
 ---
 title: Claude Skills – KI-Verhalten gezielt steuern und erweitern
 author: Tobias Geistert
-pubDatetime: 2026-03-25T15:20:35Z
+pubDatetime: 2026-04-07T15:20:35Z
 slug: claude-skills-erklaert featured
-featured: false
+featured: true
 draft: false
 tags:
   - ki

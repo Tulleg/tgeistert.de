@@ -1,9 +1,9 @@
 ---
 title: "Claude Code Hooks: Deterministische Kontrolle über deinen KI-Workflow"
 author: Tobias Geistert
-pubDatetime: 2026-04-03T08:00:00Z
+pubDatetime: 2026-04-07T08:00:00Z
 slug: claude-code-hooks-workflow-automatisierung
-featured: false
+featured: true
 draft: false
 tags:
   - claude-code

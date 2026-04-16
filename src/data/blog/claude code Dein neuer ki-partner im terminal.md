@@ -1,9 +1,9 @@
 ---
 title: "Claude Code: Dein neuer KI-Partner im Terminal"
 author: Tobias Geistert
-pubDatetime: 2026-03-25T15:20:35Z
+pubDatetime: 2026-04-07T15:20:35Z
 slug: vibe-coding-devcontainer-part-2
-featured: false
+featured: true
 draft: false
 tags:
   - devcontainer
