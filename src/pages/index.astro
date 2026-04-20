@@ -22,37 +22,52 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 <Layout>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
-    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Hey, schön dass du hier bist!
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    <section
+      id="hero"
+      class:list={[
+        "pt-8 pb-8",
+        "border-b border-border",
+        "rounded-xl",
+        "bg-gradient-to-br from-accent/8 via-background to-[color:var(--accent-2)]/8",
+        "[animation:fade-up_0.5s_ease_both]",
+      ]}
+    >
+      <span class="mb-3 inline-block rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-sm font-medium text-accent">
+        // Tobias Geistert
+      </span>
 
-      <p>
-        Ich bin Tobiuas und das hier ist mein kleines Stück Internet. Ich bastle gerne an Projekten herum und denke laut nach. Auf diesem Blog halte ich fest, was mich beschäftigt — ob Technik-Notizen, Linux-Tipps oder einfach persönliche Gedanken. Kein Perfektionismus, nur echte Einblicke.
+      <div class="flex items-end gap-0">
+        <h1 class="my-2 text-4xl font-bold sm:my-4 sm:text-5xl">
+          Hey, schön dass du hier bist!
+        </h1>
+        <span
+          class="mb-2 ml-1 inline-block h-8 w-0.5 translate-y-0 bg-accent sm:mb-4 sm:h-10"
+          style="animation: blink-cursor 1s step-end infinite;"
+          aria-hidden="true"
+        ></span>
+      </div>
+
+      <div class="mb-1 h-0.5 w-16 rounded-full bg-gradient-to-r from-accent to-[color:var(--accent-2)]"></div>
+
+      <p class="mt-4">
+        Ich bin Tobias und das hier ist mein kleines Stück Internet. Ich bastle gerne an Projekten herum und denke laut nach. Auf diesem Blog halte ich fest, was mich beschäftigt — ob Technik-Notizen, Linux-Tipps oder einfach persönliche Gedanken. Kein Perfektionismus, nur echte Einblicke.
       </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
+
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        {
+          SOCIALS.length > 0 && <Socials />
+        }
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-sm hover:border-accent hover:text-accent transition-colors"
+          aria-label="RSS Feed"
+          title="RSS Feed"
+        >
+          <IconRss width={14} height={14} class="stroke-current" />
+          RSS
+        </a>
+      </div>
     </section>
 
     {

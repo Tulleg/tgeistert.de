@@ -6,9 +6,9 @@ const imageDirectory = "src/assets/images/posts";
 const imagePublicPath = "@assets/images/posts/";
 
 const hasGitHubCredentials =
-  !!process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
-  !!process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
-  !!process.env.KEYSTATIC_SECRET;
+  !!(process.env.KEYSTATIC_GITHUB_CLIENT_ID || import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG) &&
+  !!(process.env.KEYSTATIC_GITHUB_CLIENT_SECRET || import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG) &&
+  !!(process.env.KEYSTATIC_SECRET || import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG);
 
 export default config({
   storage: hasGitHubCredentials
@@ -37,6 +37,11 @@ export default config({
             label: "Slug",
             description: "Steuert den Dateinamen und damit die URL des Posts.",
           },
+        }),
+        slug: fields.text({
+          label: "Slug",
+          description: "URL-Slug (überschreibt den Dateinamen)",
+          validation: { isRequired: false },
         }),
         author: fields.text({
           label: "Autor",

@@ -1,9 +1,14 @@
 services:
-  app:
+  cms:
     image: node:lts
     ports:
       - 4321:4321
     working_dir: /app
-    command: npm run dev -- --host 0.0.0.0
+    # Startet Keystatic CMS im Entwicklungsmodus (kein Build nötig)
+    command: sh -c "npm install -g pnpm && pnpm install && pnpm run dev:cms"
+    environment:
+      - BUILD_TARGET=cms
+    env_file:
+      - .env
     volumes:
       - ./:/app

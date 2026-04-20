@@ -2,8 +2,8 @@
 
 Diese App trennt bewusst zwei Build-Ziele:
 
-- `npm run build:site` für GitHub Pages
-- `npm run build:cms` für das Keystatic-CMS im LXC
+- `pnpm run build:site` für GitHub Pages
+- `pnpm run build:cms` für das Keystatic-CMS im LXC
 
 ## 1. LXC in Proxmox anlegen
 
@@ -32,7 +32,8 @@ npm -v
 ```bash
 git clone git@github.com:Tulleg/tgeistert.de.git /opt/tgeistert-cms
 cd /opt/tgeistert-cms
-npm install
+npm install -g pnpm
+pnpm install
 cp .env.cms.example .env
 ```
 
@@ -41,7 +42,7 @@ Danach `.env` mit deinen echten Werten befüllen:
 - `BUILD_TARGET=cms`
 - `HOST=0.0.0.0`
 - `PORT=4321`
-- `CMS_BASE_URL=https://<dein-kanonischer-cms-hostname>`
+- `ORIGIN=https://<dein-kanonischer-cms-hostname>` — Astros Node-Adapter nutzt `ORIGIN` für CSRF-Schutz und korrekte URL-Generierung
 - `KEYSTATIC_GITHUB_CLIENT_ID`
 - `KEYSTATIC_GITHUB_CLIENT_SECRET`
 - `KEYSTATIC_SECRET`
@@ -64,7 +65,7 @@ Die App braucht Zugriff auf das Repo `Tulleg/tgeistert.de`.
 
 ```bash
 cd /opt/tgeistert-cms
-npm run build:cms
+pnpm run build:cms
 ```
 
 Der Build erzeugt den startbaren Node-Server unter `dist/server/entry.mjs`.
@@ -115,13 +116,15 @@ Empfehlung:
 
 Wichtig ist nicht, ob der Host lokal oder über Tailscale erreicht wird, sondern dass GitHub OAuth immer denselben kanonischen Hostnamen sieht.
 
+> **Hinweis zur OAuth-Sicherheit**: GitHub muss die Callback-URL **nicht** direkt erreichen können. Der Browser des Nutzers wird nach dem Login von GitHub zurück zur Callback-URL geleitet. Daher funktioniert eine rein lokale Heimnetz-URL problemlos – der CMS-Server muss nicht öffentlich erreichbar sein.
+
 ## 8. Update-Ablauf im LXC
 
 ```bash
 cd /opt/tgeistert-cms
 git pull
-npm install
-npm run build:cms
+pnpm install
+pnpm run build:cms
 systemctl restart keystatic-blog
 ```
 
@@ -130,7 +133,7 @@ systemctl restart keystatic-blog
 Für GitHub Pages bleibt der normale Site-Build zuständig:
 
 ```bash
-npm run build:site
+pnpm run build:site
 ```
 
 Die GitHub-Workflows im Repo sind bereits darauf umgestellt.

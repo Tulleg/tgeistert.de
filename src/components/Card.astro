@@ -10,10 +10,16 @@ type Props = {
 
 const { variant: Heading = "h2", id, data, filePath } = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, tags, ...props } = data;
 ---
 
-<li class="my-6">
+<li
+  class:list={[
+    "my-4 rounded-lg border-l-2 border-transparent pl-4 py-3",
+    "transition-all duration-200",
+    "hover:border-accent hover:bg-muted/50 hover:-translate-y-0.5 hover:shadow-sm",
+  ]}
+>
   <a
     href={getPath(id, filePath, true, data.slug)}
     class:list={[
@@ -28,6 +34,19 @@ const { title, description, ...props } = data;
       {title}
     </Heading>
   </a>
-  <Datetime {...props} />
-  <p>{description}</p>
+  <div class="flex flex-wrap items-center gap-2">
+    <Datetime {...props} />
+    {
+      tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-1">
+          {tags.slice(0, 3).map((tag: string) => (
+            <span class="rounded-full bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent border border-accent/20">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+  <p class="mt-1 text-sm opacity-80">{description}</p>
 </li>
