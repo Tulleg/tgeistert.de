@@ -34,11 +34,12 @@ var SITE = {
 
 // tina/config.ts
 var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true" || !process.env.PUBLIC_TINA_CLIENT_ID;
 var config_default = defineConfig({
   branch,
   // Get this from tina.io for production
-  clientId: process.env.PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID || void 0,
-  token: process.env.TINA_TOKEN || void 0,
+  clientId: isLocal ? void 0 : process.env.PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID,
+  token: isLocal ? void 0 : process.env.TINA_TOKEN,
   build: {
     outputFolder: "admin",
     publicFolder: "public"

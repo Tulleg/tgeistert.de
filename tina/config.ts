@@ -8,12 +8,14 @@ const branch =
   process.env.HEAD ||
   "main";
 
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true" || !process.env.PUBLIC_TINA_CLIENT_ID;
+
 export default defineConfig({
   branch,
 
   // Get this from tina.io for production
-  clientId: process.env.PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID || undefined,
-  token: process.env.TINA_TOKEN || undefined,
+  clientId: isLocal ? undefined : (process.env.PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID),
+  token: isLocal ? undefined : process.env.TINA_TOKEN,
 
   build: {
     outputFolder: "admin",
