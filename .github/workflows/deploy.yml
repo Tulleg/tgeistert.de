@@ -41,6 +41,7 @@ jobs:
         env:
           PUBLIC_TINA_CLIENT_ID: ${{ secrets.PUBLIC_TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
+          GITHUB_BRANCH: ${{ github.ref_name }}
 
       - name: "📤 Upload artifact"
         uses: actions/upload-pages-artifact@v3
