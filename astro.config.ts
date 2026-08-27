@@ -1,10 +1,9 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
 import markdoc from "@astrojs/markdoc";
-import node from "@astrojs/node";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import keystatic from "@keystatic/astro";
+import tina from "@tinacms/astro/integration";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import {
@@ -15,13 +14,9 @@ import {
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 
-const buildTarget = process.env.BUILD_TARGET ?? "site";
-const isCmsBuild = buildTarget === "cms";
-
 // https://astro.build/config
 export default defineConfig({
-  output: isCmsBuild ? "server" : "static",
-  adapter: isCmsBuild ? node({ mode: "standalone" }) : undefined,
+  output: "static",
   site: SITE.website,
   integrations: [
     react(),
@@ -29,7 +24,7 @@ export default defineConfig({
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
     }),
-    ...(isCmsBuild ? [keystatic()] : []),
+    tina(),
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
@@ -63,11 +58,6 @@ export default defineConfig({
   env: {
     schema: {
       PUBLIC_GOOGLE_SITE_VERIFICATION: envField.string({
-        access: "public",
-        context: "client",
-        optional: true,
-      }),
-      PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: envField.string({
         access: "public",
         context: "client",
         optional: true,

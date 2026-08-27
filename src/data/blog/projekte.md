@@ -18,7 +18,7 @@ description: Das ist ist ein Überblick über meine Projekt
 
 Bissfest habe ich für meinen Angelverein entwickelt um die Nutzer und Termine besser verwalten zu können. Die App wird als Dockercontainer bereitgestellt und kann sowohl auf eigener Hardware als auch auf zugekaufter gehostet werden. Durch den Dockeransatz ist es soagr möglich Bissfest auf seinem Rechner zu starten und nur hochzufahren wenn benötigt. Die App wird weiterhin ausgebaut und um Funktionen ergänzt.
 
-![Devontainer abstrakt](@/assets/images/bissfest.gif)
+![Devontainer abstrakt](/assets/images/bissfest.gif)
 
 ### 🎯 Features
 

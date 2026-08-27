@@ -20,7 +20,7 @@ _Wir bauen jetzt die vollständige Konfiguration. Am Ende: ein `.devcontainer`-O
 
 **Tags:** Zsh · Neovim · LazyVim · Claude Code · Setup-Skript
 
-![Devontainer abstrakt](@/assets/images/conatinerAbstrcted3.png)
+![Devontainer abstrakt](/assets/images/conatinerAbstrcted3.png)
 
 ### Die Strategie: Dockerfile statt nur Features
 

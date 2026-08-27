@@ -1,0 +1,17 @@
+fragment PostsParts on Posts {
+  __typename
+  title
+  slug
+  author
+  pubDatetime
+  modDatetime
+  featured
+  draft
+  tags
+  description
+  ogImage
+  canonicalURL
+  hideEditPost
+  timezone
+  body
+}

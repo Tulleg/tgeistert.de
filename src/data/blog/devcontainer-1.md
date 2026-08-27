@@ -20,7 +20,7 @@ _Das Konzept verstehen, bevor wir irgendetwas installieren. Keine Angst vor Dock
 
 **Tags:** Konzepte · Docker · Grundlagen
 
-![Devontainer abstrakt](@/assets/images/containerAbstrcted.png)   
+![Devontainer abstrakt](/assets/images/containerAbstrcted.png)   
 
 ### Das Problem, das Devcontainer lösen
 

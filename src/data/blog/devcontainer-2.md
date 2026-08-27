@@ -20,7 +20,7 @@ _Von null zum ersten laufenden Container — Schritt für Schritt. Kein VS Code 
 
 **Tags:** Installation · CLI · Konfiguration · Linux
 
-![Devontainer abstrakt](@/assets/images/containerAbstr2.png)
+![Devontainer abstrakt](/assets/images/containerAbstr2.png)
 
 ### Voraussetzungen prüfen
 

@@ -3,11 +3,10 @@ services:
     image: node:lts
     ports:
       - 4321:4321
+      - 4001:4001
     working_dir: /app
-    # Startet Keystatic CMS im Entwicklungsmodus (kein Build nötig)
-    command: sh -c "npm install -g pnpm && pnpm install && pnpm run dev:cms"
-    environment:
-      - BUILD_TARGET=cms
+    # Startet Tina CMS und Astro im Entwicklungsmodus
+    command: sh -c "corepack enable && pnpm install && pnpm run dev"
     env_file:
       - .env
     volumes:

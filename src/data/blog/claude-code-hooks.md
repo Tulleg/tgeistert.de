@@ -22,7 +22,7 @@ Genau dafür gibt es **Hooks**. Sie wurden Mitte 2025 eingeführt und sind seitd
 
 In diesem Artikel zeige ich dir, was Hooks sind, wie die Konfiguration funktioniert, und drei Praxisbeispiele die du heute noch einsetzen kannst.
 
-![Devontainer abstrakt](@/assets/images/hooks1.png) 
+![Devontainer abstrakt](/assets/images/hooks1.png) 
 
 ---
 
