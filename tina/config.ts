@@ -1,5 +1,7 @@
 import { defineConfig } from "tinacms";
-import { SITE } from "../src/config";
+
+const SITE_AUTHOR = "Tobias Geistert";
+const SITE_TIMEZONE = "Europe/Berlin";
 
 // Your hosting provider may pass this in
 const branch =
@@ -36,8 +38,8 @@ export default defineConfig({
         path: "src/data/blog",
         format: "md",
         defaultItem: () => ({
-          author: SITE.author,
-          timezone: SITE.timezone,
+          author: SITE_AUTHOR,
+          timezone: SITE_TIMEZONE,
         }),
         ui: {
           filename: {
