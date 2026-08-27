@@ -1,4 +1,5 @@
 import { defineConfig, envField, fontProviders } from "astro/config";
+import node from "@astrojs/node";
 import markdoc from "@astrojs/markdoc";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
@@ -14,9 +15,12 @@ import {
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 
+const isDev = process.env.NODE_ENV === "development" || process.argv.includes("dev");
+
 // https://astro.build/config
 export default defineConfig({
-  output: "static",
+  output: isDev ? "server" : "static",
+  adapter: isDev ? node({ mode: "standalone" }) : undefined,
   site: SITE.website,
   integrations: [
     react(),

@@ -14,28 +14,39 @@ import { slugifyStr } from "@/utils/slugify";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
+import TinaMarkdown from '@tinacms/astro/TinaMarkdown.astro';
+import { tinaField } from '@tinacms/astro/tina-field';
 
 type Props = {
-  post: CollectionEntry<"blog">;
-  posts: CollectionEntry<"blog">[];
+  post: any;
+  posts: any[];
 };
 
 const { post, posts } = Astro.props;
 
-const {
-  title,
-  author,
-  description,
-  ogImage: initOgImage,
-  canonicalURL,
-  pubDatetime,
-  modDatetime,
-  timezone,
-  tags,
-  hideEditPost,
-} = post.data;
+// Determine if we are rendering Tina draft/live data vs static collections data
+const isTinaData = post && typeof post.body === "object";
 
-const { Content } = await render(post);
+const title = isTinaData ? post.title : post.data.title;
+const author = isTinaData ? post.author : post.data.author;
+const description = isTinaData ? post.description : post.data.description;
+const initOgImage = isTinaData ? post.ogImage : post.data.ogImage;
+const canonicalURL = isTinaData ? post.canonicalURL : post.data.canonicalURL;
+const pubDatetime = isTinaData ? new Date(post.pubDatetime) : post.data.pubDatetime;
+const modDatetime = isTinaData
+  ? post.modDatetime
+    ? new Date(post.modDatetime)
+    : undefined
+  : post.data.modDatetime;
+const timezone = isTinaData ? post.timezone : post.data.timezone;
+const tags = isTinaData ? (post.tags || []) : post.data.tags;
+const hideEditPost = isTinaData ? post.hideEditPost : post.data.hideEditPost;
+
+let Content: any;
+if (!isTinaData) {
+  const rendered = await render(post);
+  Content = rendered.Content;
+}
 
 let ogImageUrl: string | undefined;
 
@@ -46,7 +57,9 @@ if (typeof initOgImage === "string") {
 
 // Use dynamic OG image if enabled and no remote|local ogImage
 if (!ogImageUrl && SITE.dynamicOgImage) {
-  ogImageUrl = `${getPath(post.id, post.filePath, true, post.data.slug)}/index.png`;
+  ogImageUrl = isTinaData
+    ? `${getPath(post.id || "", undefined, true, post.slug)}/index.png`
+    : `${getPath(post.id, post.filePath, true, post.data.slug)}/index.png`;
 }
 
 // Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
@@ -67,18 +80,21 @@ const layoutProps = {
 
 /* ========== Prev/Next Posts ========== */
 
-const allPosts = posts.map(({ data: { title, slug }, id, filePath }) => ({
+const allPosts = (posts || []).map(({ data: { title, slug }, id, filePath }) => ({
   id,
   title,
   slug,
   filePath,
 }));
 
-const currentPostIndex = allPosts.findIndex(a => a.id === post.id);
+const currentPost = isTinaData ? null : post;
+const currentPostIndex = currentPost ? allPosts.findIndex(a => a.id === currentPost.id) : -1;
 
-const prevPost = currentPostIndex !== 0 ? allPosts[currentPostIndex - 1] : null;
+const prevPost = currentPostIndex > 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
-  currentPostIndex !== allPosts.length ? allPosts[currentPostIndex + 1] : null;
+  currentPostIndex !== -1 && currentPostIndex < allPosts.length - 1
+    ? allPosts[currentPostIndex + 1]
+    : null;
 ---
 
 <Layout {...layoutProps}>
@@ -92,6 +108,7 @@ const nextPost =
     <h1
       transition:name={slugifyStr(title.replaceAll(".", "-"))}
       class="inline-block text-2xl font-bold text-accent sm:text-3xl"
+      data-tina-field={isTinaData ? tinaField(post, 'title') : undefined}
     >
       {title}
     </h1>
@@ -101,24 +118,29 @@ const nextPost =
         aria-hidden="true"
         class:list={[
           "max-sm:hidden",
-          { hidden: !SITE.editPost.enabled || hideEditPost },
+          { hidden: !SITE.editPost.enabled || hideEditPost || isTinaData },
         ]}>|</span
       >
-      <EditPost {hideEditPost} {post} class="max-sm:hidden" />
+      <EditPost hideEditPost={isTinaData || hideEditPost} {post} class="max-sm:hidden" />
     </div>
     <article
       id="article"
       class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+      data-tina-field={isTinaData ? tinaField(post, 'body') : undefined}
     >
-      <Content />
+      {isTinaData ? (
+        <TinaMarkdown content={post.body} />
+      ) : (
+        <Content />
+      )}
     </article>
 
     <hr class="my-8 border-dashed" />
 
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
+    <EditPost class="sm:hidden" hideEditPost={isTinaData || hideEditPost} {post} />
 
     <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+      {tags.map((tag: string) => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
     </ul>
 
     <BackToTopButton />
